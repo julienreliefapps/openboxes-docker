@@ -5,4 +5,4 @@ if [ ! -f /app/web-app/WEB-INF/applicationContext.xml ]; then
    grails upgrade --force
 fi
 
-grails run-app
+ grails -Dgrails.scan.interval=10000 run-app

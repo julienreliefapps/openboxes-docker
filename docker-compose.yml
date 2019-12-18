@@ -1,4 +1,9 @@
 version: "3"
+
+networks:
+  db:
+    external: false
+
 services:
   db:
     image: mysql:5.6
@@ -10,7 +15,9 @@ services:
     volumes:
       - ./openboxes-mysql.cnf:/etc/mysql/conf.d/openboxes-mysql.cnf
     ports:
-      - "3306:3306"
+      - "3307:3306"
+    networks:
+      - "db"
 
   grails:
     build: ./grails-java7
@@ -24,3 +31,5 @@ services:
       - ../openboxes:/app
     depends_on:
       - db
+    networks: 
+      - "db"
